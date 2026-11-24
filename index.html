@@ -3,198 +3,33 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Hana is AI. Here's how she's made · Make Your Own Hana</title>
-<meta name="description" content="Hana (@hana02seoul) is a 100% AI character. See how she is made, for free: the tools, the workflow and a real prompt you can copy.">
-<meta property="og:title" content="Hana is AI. Here's how she's made">
-<meta property="og:description" content="The tools, the workflow and a free prompt behind an AI character with 10M views in 30 days.">
+<title>Hana is AI. This is how I made her · Make Your Own Hana</title>
+<meta name="description" content="Hana (@hana02seoul) is a 100% AI character with 10M views in 30 days. The Hana Blueprint is the method behind her: character, photos, video, growth and money.">
+<meta property="og:title" content="Hana is AI. This is how I made her">
+<meta property="og:description" content="One person, one laptop, never on camera. 10M views in 30 days. The method is in The Hana Blueprint.">
 <meta property="og:image" content="https://makeyourownhana.github.io/assets/hana-og-v2.jpg">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#f4eff5">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-:root{
-  --pearl:#f4eff5; --plum:#271a2c; --cherry:#e0335b; --lilac:#cdbde6; --petal:#f9dbe4; --slate:#6c6272;
-  --white:#fffdfe;
-  --sans:"Bricolage Grotesque",system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,monospace;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--pearl);color:var(--plum);font:17px/1.6 var(--sans);font-optical-sizing:auto;-webkit-font-smoothing:antialiased}
-img{display:block;max-width:100%}
-a{color:inherit}
-:focus-visible{outline:3px solid var(--cherry);outline-offset:3px;border-radius:6px}
-.wrap{max-width:1120px;margin:0 auto;padding:0 22px}
-
-/* buttons */
-.btn{display:inline-flex;align-items:center;gap:8px;font:600 16px/1 var(--sans);text-decoration:none;padding:16px 24px;border-radius:999px;border:0;cursor:pointer}
-.btn-main{background:var(--plum);color:var(--white)}
-.btn-main:hover{background:var(--cherry)}
-.btn-line{background:transparent;color:var(--plum);box-shadow:inset 0 0 0 1.5px var(--plum)}
-.btn-line:hover{box-shadow:inset 0 0 0 1.5px var(--cherry);color:var(--cherry)}
-
-/* nav */
-.nav{display:flex;justify-content:space-between;align-items:center;padding:20px 0}
-.logo{font-weight:800;font-size:18px;letter-spacing:-.02em;text-decoration:none}
-.logo i{font-style:normal;color:var(--cherry)}
-.nav a.small{font-size:15px;font-weight:600;text-decoration:none}
-
-/* hero */
-.hero{display:grid;grid-template-columns:1fr 440px;gap:56px;align-items:center;padding:28px 0 72px}
-.hero h1{font-size:clamp(56px,9.2vw,124px);font-weight:800;line-height:.9;letter-spacing:-.045em;margin:0 0 26px}
-.hero h1 span{display:block}
-.hero h1 .ghost{color:transparent;-webkit-text-stroke:2px var(--plum)}
-.lede{font-size:19px;color:var(--slate);max-width:28em;margin:0 0 30px}
-.lede b{color:var(--plum);font-weight:600}
-.ctas{display:flex;gap:12px;flex-wrap:wrap}
-
-/* generator card */
-.gen{background:var(--white);border-radius:28px;padding:14px;box-shadow:0 30px 60px -30px rgba(39,26,44,.35),0 0 0 1px rgba(39,26,44,.06)}
-.gen-prompt{background:var(--pearl);border-radius:18px;padding:14px 16px 12px;font:13.5px/1.55 var(--mono);color:var(--plum);min-height:108px}
-.gen-prompt .who{font:600 12px/1 var(--sans);color:var(--slate);margin-bottom:8px;display:flex;justify-content:space-between}
-.caret{display:inline-block;width:7px;height:15px;background:var(--cherry);vertical-align:-2px;margin-left:1px;animation:blink 1s steps(1) infinite}
-@keyframes blink{50%{opacity:0}}
-.gen-frame{position:relative;margin-top:12px;border-radius:18px;overflow:hidden;aspect-ratio:4/5;background:linear-gradient(135deg,var(--petal),var(--lilac))}
-.gen-frame canvas,.gen-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.gen-frame canvas{image-rendering:pixelated;background:linear-gradient(135deg,var(--petal),var(--lilac))}
-.gen-bar{position:absolute;left:14px;right:14px;bottom:14px;display:flex;justify-content:space-between;align-items:center;background:rgba(255,253,254,.9);backdrop-filter:blur(8px);border-radius:999px;padding:8px 8px 8px 16px;font:600 13px/1 var(--sans)}
-.gen-bar .dot{width:8px;height:8px;border-radius:50%;background:var(--cherry);display:inline-block;margin-right:8px}
-.gen-bar.done .dot{background:#2fae73}
-.again{font:600 13px/1 var(--sans);border:0;background:var(--plum);color:var(--white);border-radius:999px;padding:9px 14px;cursor:pointer;visibility:hidden}
-.gen-bar.done .again{visibility:visible}
-.progress{position:absolute;left:0;top:0;height:3px;background:var(--cherry);width:0}
-
-/* proof line */
-.proof{border-top:1.5px solid var(--plum);border-bottom:1.5px solid var(--plum);padding:22px 0;display:flex;flex-wrap:wrap;gap:8px 40px;align-items:baseline}
-.proof p{margin:0;font-size:clamp(20px,2.6vw,28px);font-weight:500;letter-spacing:-.01em}
-.proof p strong{font-weight:800}
-.proof small{display:block;flex-basis:100%;color:var(--slate);font-size:13px}
-
-/* sections */
-.sec{padding:96px 0 0}
-.sec-head{max-width:620px;margin-bottom:34px}
-.sec-head h2{font-size:clamp(34px,5vw,56px);font-weight:800;letter-spacing:-.035em;line-height:1;margin:0 0 14px}
-.sec-head p{color:var(--slate);margin:0}
-.free{display:inline-block;font:700 13px/1 var(--sans);background:var(--petal);color:var(--cherry);padding:7px 11px;border-radius:999px;margin-bottom:16px}
-
-/* gallery: photo + the line that made it */
-.strip{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
-.shot figcaption{font:12px/1.45 var(--mono);color:var(--slate);margin-top:10px}
-.shot img{border-radius:16px;aspect-ratio:3/4;object-fit:cover;width:100%}
-
-/* video */
-.vid-wrap{display:grid;grid-template-columns:360px 1fr;gap:56px;align-items:center}
-.vid{border-radius:24px;overflow:hidden;aspect-ratio:9/16;background:var(--plum);box-shadow:0 30px 60px -30px rgba(39,26,44,.35)}
-.vid video{display:block;width:100%;height:100%;object-fit:cover}
-.vid-note{color:var(--slate);font-size:16px;margin:0}
-
-/* steps */
-.steps{list-style:none;margin:0;padding:0;counter-reset:s;display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
-.steps li{counter-increment:s;background:var(--white);border-radius:22px;padding:22px 20px 24px}
-.steps li::before{content:counter(s);display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--plum);color:var(--white);font-weight:700;font-size:15px;margin-bottom:18px}
-.steps b{display:block;font-size:18px;line-height:1.2;margin-bottom:8px;letter-spacing:-.01em}
-.steps span{color:var(--slate);font-size:15px;line-height:1.5}
-
-/* rules */
-.rules{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1.5px solid var(--plum)}
-.rule{padding:24px 24px 26px 0}
-.rule+.rule{padding-left:24px;border-left:1px solid rgba(39,26,44,.15)}
-.rule h3{margin:0 0 8px;font-size:22px;letter-spacing:-.02em}
-.rule p{margin:0;color:var(--slate);font-size:16px}
-.prompt{background:var(--plum);color:#f3e9f2;border-radius:22px;margin-top:28px;overflow:hidden}
-.prompt-head{display:flex;justify-content:space-between;align-items:center;padding:14px 16px 14px 22px;font-size:14px;color:var(--lilac)}
-.copy{font:600 14px/1 var(--sans);background:var(--petal);color:var(--plum);border:0;border-radius:999px;padding:10px 16px;cursor:pointer}
-.prompt pre{margin:0;padding:4px 22px 24px;white-space:pre-wrap;font:14px/1.7 var(--mono)}
-
-/* before / after */
-.ba-wrap{display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:center}
-.ba{position:relative;border-radius:24px;overflow:hidden;aspect-ratio:4/5;width:100%;max-width:520px;user-select:none;touch-action:pan-y;background:var(--lilac)}
-.ba img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 18%}
-.ba .before{clip-path:inset(0 calc(100% - var(--x,50%)) 0 0)}
-.ba .handle{position:absolute;top:0;bottom:0;left:var(--x,50%);width:2px;background:var(--white);transform:translateX(-1px)}
-.ba .handle::after{content:"";position:absolute;top:88%;left:50%;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;background:var(--white);box-shadow:0 6px 20px rgba(39,26,44,.3)}
-.ba .tag{position:absolute;top:14px;font:700 13px/1 var(--sans);background:rgba(255,253,254,.92);padding:8px 12px;border-radius:999px}
-.ba .tag.l{left:14px}.ba .tag.r{right:14px;background:var(--cherry);color:var(--white)}
-.ba input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
-
-/* offer */
-.offer{display:grid;grid-template-columns:400px 1fr;gap:56px;align-items:center;background:var(--plum);color:var(--white);border-radius:32px;padding:40px}
-.offer img{border-radius:18px;width:100%}
-.offer h2{font-size:clamp(36px,5vw,60px);font-weight:800;letter-spacing:-.04em;line-height:.95;margin:0 0 20px}
-.offer ul{margin:0 0 28px;padding:0;list-style:none}
-.offer li{padding:10px 0;border-top:1px solid rgba(255,255,255,.14);color:#e6dbe8}
-.buy{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
-.price{font-size:44px;font-weight:800;letter-spacing:-.03em}
-.offer .btn-main{background:var(--cherry)}
-.offer .btn-main:hover{background:var(--white);color:var(--plum)}
-.offer small{display:block;margin-top:16px;color:var(--lilac);font-size:13px}
-
-/* packages */
-.pkgs{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.pkg{background:var(--white);border-radius:24px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column}
-.pkg img{aspect-ratio:4/5;object-fit:cover;width:100%}
-.pkg .body{padding:20px 22px 22px;display:flex;flex-direction:column;flex:1}
-.pkg h3{margin:0 0 6px;font-size:22px;letter-spacing:-.02em}
-.pkg p{margin:0 0 18px;color:var(--slate);font-size:15px;flex:1}
-.pkg .row{display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:20px}
-.pkg .row span{font-size:14px;color:var(--cherry)}
-.pkg:hover .row span{text-decoration:underline}
-.pkg.best{box-shadow:0 0 0 2px var(--cherry)}
-.pkg .flag{align-self:flex-start;font:700 12px/1 var(--sans);background:var(--cherry);color:var(--white);padding:6px 10px;border-radius:999px;margin-bottom:12px}
-
-/* faq */
-.faq{max-width:760px}
-.faq details{border-top:1.5px solid var(--plum);padding:20px 0}
-.faq details:last-of-type{border-bottom:1.5px solid var(--plum)}
-.faq summary{cursor:pointer;font-weight:700;font-size:20px;list-style:none;display:flex;justify-content:space-between;gap:20px}
-.faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+";font-weight:500}
-.faq details[open] summary::after{content:"−"}
-.faq p{color:var(--slate);margin:12px 0 0}
-
-footer{margin-top:110px;padding:40px 0 56px;border-top:1.5px solid var(--plum);font-size:14px;color:var(--slate);display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
-footer p{margin:4px 0}
-footer b{color:var(--plum)}
-
-@media (max-width:900px){
-  .hero{grid-template-columns:1fr;gap:36px;padding-bottom:56px}
-  .gen{max-width:460px}
-  .strip{grid-template-columns:repeat(6,62%);overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px}
-  .shot{scroll-snap-align:start}
-  .vid-wrap{grid-template-columns:1fr;gap:24px}
-  .vid{max-width:360px}
-  .steps{grid-template-columns:1fr}
-  .rules{grid-template-columns:1fr}
-  .rule,.rule+.rule{padding:20px 0;border-left:0;border-top:1px solid rgba(39,26,44,.15)}
-  .rule:first-child{border-top:0}
-  .ba-wrap,.offer{grid-template-columns:1fr;gap:28px}
-  .offer{padding:22px;border-radius:26px}
-  .pkgs{grid-template-columns:1fr}
-  .sec{padding-top:72px}
-  body{font-size:16px}
-}
-@media (prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto}
-  .caret{animation:none}
-}
-</style>
+<link rel="stylesheet" href="style.css?v=2">
 </head>
 <body>
 <div class="wrap">
 
   <nav class="nav">
     <a class="logo" href="#">make your own hana<i>.</i></a>
-    <a class="small" href="#guide">Get the guide</a>
+    <a class="pill" href="https://payhip.com/b/Blaw1">Get the Blueprint · $19</a>
   </nav>
 
   <header class="hero">
     <div>
       <h1><span>She</span><span>doesn't</span><span class="ghost">exist.</span></h1>
-      <p class="lede">Hana (@hana02seoul) is <b>100% AI</b>. No model, no camera, no photoshoot. Every photo and video comes from a prompt. Here is how she's made, free.</p>
+      <p class="lede">Hana (@hana02seoul) is <b>100% AI</b>. I made her alone on a laptop and never showed my face. She reached <b>10M views in 30 days</b>. The Hana Blueprint is the method I used, written down step by step.</p>
       <div class="ctas">
-        <a class="btn btn-main" href="#free">See how she's made</a>
-        <a class="btn btn-line" href="#guide">Get the full guide</a>
+        <a class="btn btn-main" href="https://payhip.com/b/Blaw1">Get the Blueprint · $19</a>
+        <a class="btn btn-line" href="#inside">See what's inside</a>
       </div>
     </div>
 
@@ -221,8 +56,21 @@ footer b{color:var(--plum)}
 
   <section class="sec">
     <div class="sec-head">
+      <h2>This is for you if</h2>
+      <p>You don't need to be technical. You need a laptop and the patience to follow steps in order.</p>
+    </div>
+    <div class="for">
+      <div><b>You don't want to be on camera</b><span>The character is the face. You stay behind the screen the whole time.</span></div>
+      <div><b>Your AI photos look fake</b><span>Plastic skin, stiff poses, studio light. People spot it in one second and scroll.</span></div>
+      <div><b>Your AI videos look AI</b><span>Floaty movement, wide eyes, a face that changes halfway through the clip.</span></div>
+      <div><b>You have something to promote</b><span>A product, a shop or a brand, and you want content without hiring a model or a film crew.</span></div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head">
       <h2>Same face. Different days.</h2>
-      <p>Every photo below is AI. Under each one, the moment the prompt asked for.</p>
+      <p>Every photo below is AI. This is the level the guide teaches you to reach with your own character.</p>
     </div>
     <div class="strip">
       <figure class="shot" style="margin:0"><img src="assets/hana-g1.jpg" alt="AI photo of Hana walking on a sunny street" loading="lazy"><figcaption>walking, tucking her hair, low sun behind her</figcaption></figure>
@@ -239,45 +87,8 @@ footer b{color:var(--plum)}
       <div class="vid"><video src="assets/hana-room-dance.mp4" poster="assets/hana-room-dance.jpg" autoplay muted loop playsinline preload="metadata" aria-label="AI video of Hana dancing in her room"></video></div>
       <div class="sec-head" style="margin:0">
         <h2>She moves too.</h2>
-        <p class="vid-note">Her face, outfit and the room are all AI. The moves come from a real dance clip, swapped onto Hana with a single reference image of her face and figure.</p>
+        <p class="vid-note">Her face, her outfit and the room are all AI. The guide covers video as well as photos: how to get movement that looks filmed on a phone, and how to keep her face the same from the first second to the last.</p>
       </div>
-    </div>
-  </section>
-
-  <section class="sec" id="free">
-    <div class="sec-head">
-      <span class="free">Free</span>
-      <h2>How Hana is made</h2>
-      <p>One main platform plus one chat AI. Five steps, in this order.</p>
-    </div>
-    <ol class="steps">
-      <li><b>Design the face</b><span>Front photo and side profile in ChatGPT. Once approved, never change it.</span></li>
-      <li><b>Save her as a character</b><span>Upload those images on Higgsfield so every photo starts from her face.</span></li>
-      <li><b>Make real-looking photos</b><span>One light source, one action, an everyday phone look. Rules below.</span></li>
-      <li><b>Turn photos into video</b><span>Approve a photo, then animate it in Seedance 2.5 or Kling 4.0. Never video from text alone.</span></li>
-      <li><b>Post and repeat</b><span>A short human caption. Change the topic every post. Keep what works.</span></li>
-    </ol>
-  </section>
-
-  <section class="sec">
-    <div class="sec-head">
-      <span class="free">Free</span>
-      <h2>3 rules that kill the AI look</h2>
-      <p>A real-looking photo isn't one that shows every pore. It's one a normal person would actually choose to post.</p>
-    </div>
-    <div class="rules">
-      <div class="rule"><h3>One real light</h3><p>Window, sun or street lamp. Say where it is and which side of her face falls into shadow. Evenly lit faces give AI away.</p></div>
-      <div class="rule"><h3>Mid-movement</h3><p>Catch her doing something: walking, tucking her hair, laughing at something off camera. Never script a stiff pose.</p></div>
-      <div class="rule"><h3>No eating</h3><p>No biting, no drinking. AI mouths around food and cups still look wrong.</p></div>
-    </div>
-    <div class="prompt">
-      <div class="prompt-head"><span>Free photo prompt. Fill in the brackets.</span><button class="copy" type="button" data-target="p-photo">Copy prompt</button></div>
-<pre id="p-photo">A candid phone photo of [name] [doing one action, mid-movement] at [real place].
-She is wearing [specific outfit a real girl would wear here].
-Light: [one source, e.g. late afternoon sun behind her and to her left]. A warm thin rim of light on her hair; her face is in soft open shade, slightly darker than the background but clearly readable. No light from the front, no second light source.
-Her eyes are focused on [specific thing], natural smile that reaches her eyes.
-Nobody else in the frame.
-Everyday phone photo look. No skin smoothing, no beauty filter, no studio lighting, no CGI look.</pre>
     </div>
   </section>
 
@@ -292,8 +103,76 @@ Everyday phone photo look. No skin smoothing, no beauty filter, no studio lighti
       </div>
       <div class="sec-head" style="margin:0">
         <h2>Same girl. One looks posted, one looks generated.</h2>
-        <p>Drag the photo. The difference is light, pose and texture, the exact things the full guide walks through rule by rule.</p>
+        <p>Drag the photo. The difference is light, pose and texture. The guide walks through all three, rule by rule, with the prompts I use.</p>
       </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="about">
+      <img src="assets/hana-peace.jpg" alt="AI selfie of Hana" loading="lazy">
+      <div>
+        <span class="eyebrow">Who made this</span>
+        <div class="sec-head" style="margin-bottom:18px"><h2>I'm the person behind Hana.</h2></div>
+        <p><b>One person. No team, no model, no camera.</b> I design the character, make every photo and video with AI tools, write the captions and post.</p>
+        <p>Hana gained 18K followers in 14 days. Her biggest reels are her dunking in a mini dress and heels. On a reel with 2M views, fewer than 0.1% of people asked if she was AI.</p>
+        <p>I made plenty of mistakes getting there: faces that changed between posts, photos that screamed AI, videos nobody watched. The Blueprint is what was left after I fixed them.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="inside">
+    <div class="sec-head">
+      <span class="eyebrow">What's inside</span>
+      <h2>The whole method, not only the pretty photos.</h2>
+      <p>One PDF, ten chapters. It starts with an empty screen and ends with a posting plan.</p>
+    </div>
+    <div class="inside">
+      <div class="part">
+        <h3>1. Build the character</h3>
+        <p>Before you make a single post.</p>
+        <ul>
+          <li><b>The tool stack</b>Which tool does which job, and which one to open first. Higgsfield, Seedance, Kling and ChatGPT.</li>
+          <li><b>Designing the character</b>How to lock one face and one figure so she is the same person in every post.</li>
+          <li><b>Plain-English glossary</b>Every AI term used in the guide, explained in one line.</li>
+        </ul>
+      </div>
+      <div class="part">
+        <h3>2. Photos that pass as real</h3>
+        <p>The part most AI accounts get wrong.</p>
+        <ul>
+          <li><b>All 10 realism rules</b>Light, pose, skin, outfit and background. What gives AI away and how to remove it.</li>
+          <li><b>5 ready-to-use photo prompts</b>Fill in the brackets with your character and your scene.</li>
+        </ul>
+      </div>
+      <div class="part">
+        <h3>3. Video</h3>
+        <p>From one approved photo to a finished clip.</p>
+        <ul>
+          <li><b>Video prompt template</b>The structure I use, plus the rules for movement that looks natural.</li>
+          <li><b>The viral remake method</b>How to study why a reel blew up, then make your own version from a first frame you generated.</li>
+        </ul>
+      </div>
+      <div class="part">
+        <h3>4. Getting watched</h3>
+        <p>A good clip still needs someone to stop scrolling.</p>
+        <ul>
+          <li><b>Hooks and captions</b>How Hana's are written and why short ones work.</li>
+          <li><b>Fake-check list</b>What to check on every photo and video before you post it.</li>
+          <li><b>14-day plan</b>What to make and post each day for your first two weeks.</li>
+        </ul>
+      </div>
+      <div class="part wide">
+        <h3>5. Turning views into money</h3>
+        <p>What a faceless AI character can be used for.</p>
+        <ul>
+          <li><b>The realistic options</b>UGC work, promoting your own product or shop, brand deals and affiliate links, and what each one needs from you.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="midcta">
+      <a class="btn btn-main" href="https://payhip.com/b/Blaw1">Get the Blueprint · $19</a>
+      <span>PDF, emailed to you right after checkout.</span>
     </div>
   </section>
 
@@ -303,36 +182,15 @@ Everyday phone photo look. No skin smoothing, no beauty filter, no studio lighti
       <div>
         <h2>The Hana Blueprint</h2>
         <ul>
-          <li>All 10 realism rules, plus 5 ready-to-use photo prompts</li>
-          <li>The viral remake method that grew Hana fastest</li>
-          <li>Video prompt template and rules for natural movement</li>
-          <li>Hooks, captions and a fake-check list for every post</li>
-          <li>Turning views into money, and a 14-day plan</li>
+          <li>Character design that keeps one face across every post</li>
+          <li>10 realism rules and 5 photo prompts</li>
+          <li>Video prompt template and the viral remake method</li>
+          <li>Hooks, captions and a fake-check list</li>
+          <li>Money options and a 14-day plan</li>
         </ul>
-        <div class="buy"><span class="price">$19</span><a class="btn btn-main" href="https://payhip.com/b/Blaw1">Get the guide</a></div>
-        <small>18-page PDF, sent to your email right after checkout. This guide teaches the method. It does not promise views or income.</small>
+        <div class="buy"><span class="price">$19</span><a class="btn btn-main" href="https://payhip.com/b/Blaw1">Get the Blueprint</a></div>
+        <small>One payment, no subscription. PDF sent to your email right after checkout. This guide teaches the method. It does not promise views or income.</small>
       </div>
-    </div>
-  </section>
-
-  <section class="sec">
-    <div class="sec-head">
-      <h2>Or have her built for you</h2>
-      <p>Your own AI character, made the same way as Hana. Adults only, and only your own AI persona, never a celebrity or another real person.</p>
-    </div>
-    <div class="pkgs">
-      <a class="pkg" href="https://payhip.com/b/854OE">
-        <img src="assets/hana-realism-v2.jpg" alt="Realism upgrade before and after" loading="lazy">
-        <div class="body"><h3>Realism Upgrade</h3><p>Send your existing AI character. Get 10 photos that look like real phone photos.</p><div class="row">$79 <span>View package</span></div></div>
-      </a>
-      <a class="pkg" href="https://payhip.com/b/GBrcQ">
-        <img src="assets/hana-wink.jpg" alt="Starter package example" loading="lazy">
-        <div class="body"><h3>Starter</h3><p>3 face options, 3 outfits, 10 lifestyle photos and a character sheet.</p><div class="row">$119 <span>View package</span></div></div>
-      </a>
-      <a class="pkg best" href="https://payhip.com/b/8gdJG">
-        <img src="assets/hana-standard-v2.jpg" alt="Standard package example" loading="lazy">
-        <div class="body"><span class="flag">Best value</span><h3>Standard</h3><p>5 outfits, 20 lifestyle photos and a full front, side and back character sheet.</p><div class="row">$179 <span>View package</span></div></div>
-      </a>
     </div>
   </section>
 
@@ -340,10 +198,22 @@ Everyday phone photo look. No skin smoothing, no beauty filter, no studio lighti
     <div class="sec-head"><h2>Before you ask</h2></div>
     <details><summary>Is Hana a real person?</summary><p>No. Hana is fully AI-generated, and her Instagram is labelled as AI.</p></details>
     <details><summary>Do I need to show my face?</summary><p>No. That's the point. The character is the face.</p></details>
+    <details><summary>Is this only for making a girl like Hana?</summary><p>No. The same steps work for any character: a man, a mascot, a presenter for your shop or brand. Hana is the example because her numbers are real.</p></details>
+    <details><summary>Does it cover video or only photos?</summary><p>Both. Photos come first because every video starts from an approved photo, then the guide moves on to video prompts and movement.</p></details>
     <details><summary>Will I get 10M views too?</summary><p>Nobody can promise that. Hana's numbers come from one account, and most accounts never go viral. What you get is the method and the mistakes to avoid.</p></details>
-    <details><summary>What tools do I need?</summary><p>Higgsfield for photos and videos, and ChatGPT for the first face design. Check current prices yourself before you pay.</p></details>
+    <details><summary>What tools do I need?</summary><p>Higgsfield for photos and videos, and ChatGPT for the first face design. Both are paid tools. Check current prices yourself before you buy.</p></details>
     <details><summary>How do I get the guide after paying?</summary><p>Checkout runs on Payhip. The PDF is emailed to you automatically right after payment.</p></details>
     <details><summary>How do I contact you?</summary><p>Email <a href="mailto:hana02seoul@gmail.com">hana02seoul@gmail.com</a>.</p></details>
+  </section>
+
+  <section class="sec">
+    <div class="done">
+      <div>
+        <h2>Rather have it done for you?</h2>
+        <p>I also build AI characters to order, made the same way as Hana. Packages start at $79.</p>
+      </div>
+      <a class="btn btn-line" href="services.html">See the packages</a>
+    </div>
   </section>
 
   <footer>
@@ -358,77 +228,7 @@ Everyday phone photo look. No skin smoothing, no beauty filter, no studio lighti
   </footer>
 
 </div>
-<script>
-(function(){
-  var text="A candid selfie of Hana on her bed, soft window light from the left, white knit top, messy room behind her, everyday phone look.";
-  var typed=document.getElementById('typed'),caret=document.getElementById('caret'),
-      cv=document.getElementById('pix'),img=document.getElementById('final'),
-      bar=document.getElementById('bar'),status=document.getElementById('status'),
-      prog=document.getElementById('prog'),again=document.getElementById('again'),
-      ctx=cv.getContext('2d');
-  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var run=0;
-
-  function setStatus(t,done){status.innerHTML='<i class="dot"></i>'+t;bar.classList.toggle('done',!!done)}
-  function size(){var r=cv.getBoundingClientRect();cv.width=Math.round(r.width);cv.height=Math.round(r.height)}
-  function cover(sw,sh,dw,dh){var s=Math.max(dw/sw,dh/sh);return [(sw-dw/s)/2,(sh-dh/s)/2,dw/s,dh/s]}
-  function draw(block){
-    var w=cv.width,h=cv.height,sw=Math.max(1,Math.round(w/block)),sh=Math.max(1,Math.round(h/block));
-    var c=cover(img.naturalWidth,img.naturalHeight,w,h);
-    var t=document.createElement('canvas');t.width=sw;t.height=sh;
-    t.getContext('2d').drawImage(img,c[0],c[1],c[2],c[3],0,0,sw,sh);
-    ctx.imageSmoothingEnabled=false;ctx.clearRect(0,0,w,h);ctx.drawImage(t,0,0,sw,sh,0,0,w,h);
-  }
-  function finish(){cv.style.opacity=0;prog.style.width='100%';setStatus('Done in 4.2s',true);caret.style.display='none'}
-
-  function start(){
-    var id=++run;
-    typed.textContent='';caret.style.display='';cv.style.opacity=1;cv.style.transition='none';
-    prog.style.transition='none';prog.style.width='0';
-    if(reduce){typed.textContent=text;finish();return}
-    size();ctx.fillStyle='#e9dff0';ctx.fillRect(0,0,cv.width,cv.height);
-    setStatus('Writing prompt',false);
-    var i=0;
-    (function type(){
-      if(id!==run)return;
-      i+=2;typed.textContent=text.slice(0,i);
-      if(i<text.length){setTimeout(type,28)}else{render()}
-    })();
-    function render(){
-      setStatus('Generating',false);
-      prog.style.transition='width 2.6s linear';prog.style.width='100%';
-      var steps=[64,40,24,14,8,4,2],k=0;
-      (function step(){
-        if(id!==run)return;
-        draw(steps[k]);k++;
-        if(k<steps.length){setTimeout(step,370)}
-        else{cv.style.transition='opacity .5s ease';setTimeout(function(){if(id===run)finish()},120)}
-      })();
-    }
-  }
-  again.addEventListener('click',start);
-  function go(){
-    if('IntersectionObserver' in window){
-      var io=new IntersectionObserver(function(e){if(e[0].isIntersecting){io.disconnect();start()}},{threshold:.4});
-      io.observe(cv);
-    }else start();
-  }
-  if(img.complete&&img.naturalWidth)go();else img.addEventListener('load',go);
-
-  // before / after
-  var ba=document.getElementById('ba'),r=document.getElementById('baRange');
-  r.addEventListener('input',function(){ba.style.setProperty('--x',r.value+'%')});
-
-  // copy
-  document.querySelectorAll('.copy').forEach(function(btn){
-    btn.addEventListener('click',function(){
-      var t=document.getElementById(btn.dataset.target).innerText,orig=btn.textContent;
-      function done(){btn.textContent='Copied';setTimeout(function(){btn.textContent=orig},1600)}
-      function fallback(){var a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy');done()}catch(e){btn.textContent='Long-press to copy'}document.body.removeChild(a)}
-      if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(t).then(done,fallback)}else fallback();
-    });
-  });
-})();
-</script>
+<div class="stick"><span>The Hana Blueprint · $19</span><a href="https://payhip.com/b/Blaw1">Get it</a></div>
+<script src="site.js?v=2"></script>
 </body>
 </html>
