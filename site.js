@@ -68,3 +68,28 @@
     });
   });
 })();
+
+(function(){
+  var box=document.getElementById('live');if(!box)return;
+  var nums=box.querySelectorAll('.num');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function fmt(v,dec,to){return (v>=to?String(to):v.toFixed(dec))}
+  function run(){
+    box.classList.add('run');
+    if(reduce)return;
+    nums.forEach(function(el,i){
+      var to=parseFloat(el.dataset.to),dec=parseInt(el.dataset.dec||'0',10),suf=el.dataset.suf||'',t0=null,dur=1900+i*250;
+      el.textContent=(0).toFixed(dec)+suf;
+      function tick(t){
+        if(!t0)t0=t;var p=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-p,3);
+        el.textContent=fmt(to*e,dec,to)+suf;
+        if(p<1)requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    });
+  }
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(e){if(e[0].isIntersecting){io.disconnect();run()}},{threshold:.5});
+    io.observe(box);
+  }else run();
+})();
