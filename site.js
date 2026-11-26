@@ -25,7 +25,7 @@
     typed.textContent='';caret.style.display='';cv.style.opacity=1;cv.style.transition='none';
     prog.style.transition='none';prog.style.width='0';
     if(reduce){typed.textContent=text;finish();return}
-    size();ctx.fillStyle='#e9dff0';ctx.fillRect(0,0,cv.width,cv.height);
+    size();ctx.fillStyle='#fbe7b8';ctx.fillRect(0,0,cv.width,cv.height);
     setStatus('Writing prompt',false);
     var i=0;
     (function type(){
